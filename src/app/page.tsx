@@ -59,25 +59,36 @@ export default function Home() {
   }
 
   return (
-    <main>
-      <div className="flex-col justify-center items-center min-h-screen">
+    <main  className="">
+      <div className="flex flex-col items-center min-h-screen w-full pt-28">
         
-        <form className="flex gap-4 w-1/2" onSubmit={handleSubmit}>
-          <label>Paste youtube url: </label>
-          <input type="text" id="url" value={url} onChange={(e) => setUrl(e.target.value)} className="w-full"/>
-          <button type="submit" disabled={loading}>Summarize</button>
+        <form className="flex gap-4 w-3/4 h-12" onSubmit={handleSubmit}>
+          <input 
+            className="border rounded-lg w-full shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-600" 
+            placeholder="Paste youtube video url here..." 
+            type="text" 
+            id="url" 
+            value={url} 
+            onChange={(e) => setUrl(e.target.value)}/>
+          <button 
+            type="submit" 
+            disabled={loading}
+            className="bg-blue-600 rounded-lg p-2 text-white font-bold hover:bg-sky-400 transition duration-300 ease-in-out"
+            >Summarize
+          </button>
         </form>
         
-        <div>
-          {loading ? (
-            <div>Loading...</div>
-          ) : (
-            summary && (
-              <div>
+        <div className="mt-10 my-10 px-10 py-2 border-2 rounded-lg mx-auto w-3/4 max-w-4xl h-96 overflow-auto">
+          <div className="flex justify-center items-center">
+            {loading && <span className="loading loading-spinner loading-lg text-blue-500 mt-36"></span>}
+          </div>
+          <div>
+            {!loading && summary && (
+              <div className="whitespace-pre-wrap">
                 <p>{summary}</p>
               </div>
-            )
-          )}
+            )}
+          </div>
         </div>
       
       </div>
