@@ -69,7 +69,8 @@ export default function Home() {
     <main  className="">
       <div className="flex flex-col items-center min-h-screen w-full pt-8">
         
-        <h1 className="mb-16 font-bold text-4xl text-slate-500">Summarize any YouTube video 💻</h1>
+        <h1 className="font-bold text-4xl text-slate-500">Summarize any YouTube video 💻</h1>
+        <h3 className="mb-16 mt-4 text-xs text-slate-500">Made with 💙 by <a className="underline" href="https://www.linkedin.com/in/rohankanti/">Rohan</a></h3>
         
         <form className="flex gap-4 w-3/4 h-12" onSubmit={handleSubmit}>
           <input 
@@ -107,7 +108,7 @@ export default function Home() {
               </div>
             )}
         </div>
-      
+
       </div>
     </main>
   );
