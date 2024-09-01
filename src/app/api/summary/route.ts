@@ -13,6 +13,7 @@ export async function GET(req: NextRequest){
         return NextResponse.json({ transcript: ts_text, status: 200 });
     }catch(error){  
         console.error("Error fetching transcript:", error);
+        return NextResponse.json({ error: error, status: 500 })
     }
 }
 
