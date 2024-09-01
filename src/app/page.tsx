@@ -6,12 +6,19 @@ export default function Home() {
   const [url, setUrl] = useState<string>("");
   const [summary, setSummary] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
+  const [loadTime, setLoadTime] = useState<number>(0);
 
   const handleSubmit = async (e:any) =>{
     e.preventDefault();
+    setLoadTime(0)
+    setSummary("")
     setLoading(true)
+    const startTime = new Date().getTime();
     const transcript = await getTranscript(url);
     await getSummary(transcript);
+    const endTime = new Date().getTime();
+    const elapsedTime = (endTime - startTime) / 1000; // Convert to seconds
+    setLoadTime(elapsedTime);
     setLoading(false)
   }
 
@@ -60,7 +67,9 @@ export default function Home() {
 
   return (
     <main  className="">
-      <div className="flex flex-col items-center min-h-screen w-full pt-28">
+      <div className="flex flex-col items-center min-h-screen w-full pt-8">
+        
+        <h1 className="mb-16 font-bold text-4xl text-slate-500">Summarize any YouTube video 💻</h1>
         
         <form className="flex gap-4 w-3/4 h-12" onSubmit={handleSubmit}>
           <input 
@@ -89,6 +98,14 @@ export default function Home() {
               </div>
             )}
           </div>
+        </div>
+
+        <div>
+            {!loading && summary && (
+              <div>
+                <p className="font-bold text-slate-500">Summary generated in: {loadTime.toFixed(2)} seconds</p>
+              </div>
+            )}
         </div>
       
       </div>
